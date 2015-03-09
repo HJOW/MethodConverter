@@ -154,4 +154,9 @@ public class EmptyModule implements BothModule
 	{
 		return "";
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

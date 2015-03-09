@@ -273,4 +273,9 @@ public abstract class Sender implements ConvertModule
 		
 		return results + "\n\n" + getParameterHelp();
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

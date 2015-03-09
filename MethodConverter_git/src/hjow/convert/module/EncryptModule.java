@@ -319,6 +319,7 @@ public class EncryptModule implements SecurityModule
 	 * @param parameters : Parameters
 	 * @return encrypted text
 	 */
+	@SuppressWarnings("restriction")
 	public String convert(String before, long threadTerm, String algorithm, String key, String keypadding, String byteArrayEncoding, String charset, Map<String, String> parameters)
 	{
 		if(before == null) return null;
@@ -649,5 +650,10 @@ public class EncryptModule implements SecurityModule
 		results = results + getName() + "\n\n";
 		
 		return results + "\n\n" + getParameterHelp();
+	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
 	}
 }

@@ -963,6 +963,11 @@ public class SQLModule implements ConvertModule
 		
 		return results + "\n\n" + getParameterHelp();
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }
 /**
  * <p>This class object can includes value and its data type.</p>

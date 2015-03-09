@@ -1,6 +1,7 @@
 package hjow.methodconverter.awtconverter;
 
 import hjow.methodconverter.Controller;
+import hjow.methodconverter.Statics;
 import hjow.methodconverter.ui.GUIParameterGetter;
 import hjow.methodconverter.ui.Manager;
 
@@ -102,7 +103,23 @@ public class AWTParameterGetter extends GUIParameterGetter
 			
 			upper.setParameterFieldText(toParameterString(nowParameter));
 			upper.alert(Controller.getString("New parameter is added."));
-			close(false);
+			
+			try
+			{
+				String paramAddCloseOption = Controller.getOption("CloseAfterParamAdded");
+				if(paramAddCloseOption == null)
+				{
+					close(false);
+				}
+				else if(Statics.parseBoolean(paramAddCloseOption))
+				{
+					close(false);
+				}
+			}
+			catch(Exception e1)
+			{
+				close(false);
+			}
 		}
 		else if(ob == closeButton)
 		{

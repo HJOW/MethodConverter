@@ -445,6 +445,7 @@ public class Statics
 		tables.put("Security Level", "보안 수준");
 		tables.put("Binary", "이진");
 		tables.put("Text", "텍스트");
+		tables.put("Font Size", "글꼴 크기");
 		tables.put("Converter", "변환기");
 		tables.put("User defined", "사용자 정의");
 		tables.put("Some works needs to your allows because this works are probability dangerous.", "잠재적으로 위험한 작업을 수행하려 합니다. 수행하시겠습니까?");

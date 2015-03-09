@@ -299,8 +299,26 @@ public class CompressModule implements BothModule
 	public String getHelps()
 	{
 		String results = "";
-		results = results + getName() + "\n\n";
-		
-		return results + "\n\n" + getParameterHelp();
+		if(Statics.isKoreanLocale())
+		{
+			results = results + Controller.getString(Controller.TITLES) + "\n";
+			results = results + "" + "\n";
+			results = results + "이 모듈은 바이너리(이진) 데이터 변환에만 쓰입니다." + "\n";
+			results = results + "" + "\n";
+			results = results + "이 모듈은 바이너리 파일을 압축하거나 해제할 수 있습니다." + "\n";
+			
+		}
+		else
+		{
+			results = results + Controller.getString(Controller.TITLES) + "\n";
+			results = results + "" + "\n";
+			results = results + "This module can zip binary file." + "\n";
+		}
+		return results + "\n\n" + Controller.getString(Controller.licenseMessage);
+	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
 	}
 }

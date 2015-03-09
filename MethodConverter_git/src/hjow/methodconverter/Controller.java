@@ -105,7 +105,7 @@ public class Controller
 	 * 
 	 * <p>빌드 번호입니다.</p>
 	 */
-	public static long buildNumber = 100000000000L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L);
+	public static long buildNumber = 100000000001L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L);
 	
 	/**
 	 * <p>If this is true, build number is appear on the about dialog.</p>
@@ -354,7 +354,7 @@ public class Controller
 			if(i == 0) Controller.firstMessage = Controller.firstMessage + " v" + String.valueOf(Controller.versions[i]);
 			else Controller.firstMessage = Controller.firstMessage + "." + String.valueOf(Controller.versions[i]);
 		}
-					
+		
 		// Prepare default path
 		try
 		{

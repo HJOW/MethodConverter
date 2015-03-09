@@ -59,6 +59,8 @@ public class SwingSettingManager extends SettingManager
 	private JLabel securityLevelLabel;
 	private JLabel autoSaveLabel;
 	private JSpinner autoSaveLevelSelector;
+	private JLabel fontSizeLabel;
+	private JSpinner fontSizeSelector;
 	
 	/**
 	 * <p>Create setting manager.
@@ -140,6 +142,11 @@ public class SwingSettingManager extends SettingManager
 		optionPanels[1].add(localeLabel);
 		optionPanels[1].add(localeSelector);
 		
+		fontSizeLabel = new JLabel("Font");
+		fontSizeSelector = new JSpinner(new SpinnerNumberModel(12, 5, 20, 1));
+		optionPanels[1].add(fontSizeLabel);
+		optionPanels[1].add(fontSizeSelector);
+		
 		betaChecker = new JCheckBox("Beta");
 		optionPanels[2].add(betaChecker);
 		
@@ -202,6 +209,7 @@ public class SwingSettingManager extends SettingManager
 			Controller.setOption("useOnline", String.valueOf(onlineChecker.isSelected()));
 			Controller.setOption("securityLevel", String.valueOf(securityLevelSelector.getValue()));
 			Controller.setOption("autoSave", String.valueOf(autoSaveLevelSelector.getValue()));
+			Controller.setOption("fontSize", String.valueOf(fontSizeSelector.getValue()));
 			//System.out.println(StringToMethodConverter.getOption("theme"));
 			Controller.saveOption();
 		}
@@ -283,6 +291,19 @@ public class SwingSettingManager extends SettingManager
 		
 		securityLevelSelector.setValue(new Integer(Controller.getSecurityLevel()));
 		autoSaveLevelSelector.setValue(new Integer(Statics.autoSavingLevel()));
+		
+		String getFontSizeText = Controller.getOption("fontSize");
+		if(getFontSizeText != null)
+		{
+			try
+			{
+				fontSizeSelector.setValue(new Integer(getFontSizeText));
+			}
+			catch(Exception e)
+			{
+				fontSizeSelector.setValue(new Integer(12));
+			}
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -315,5 +336,6 @@ public class SwingSettingManager extends SettingManager
 		onlineChecker.setText(Controller.getString("Use online contents"));
 		securityLevelLabel.setText(Controller.getString("Security Level"));
 		autoSaveLabel.setText(Controller.getString("Level of saving options and packages"));
+		fontSizeLabel.setText(Controller.getString("Font Size"));
 	}
 }

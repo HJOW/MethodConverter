@@ -2,9 +2,9 @@ package hjow.methodconverter.swingconverter;
 
 import hjow.methodconverter.Controller;
 import hjow.methodconverter.Statics;
-import hjow.methodconverter.awtconverter.AWTHelpManager;
 import hjow.methodconverter.ui.AdvancedManager;
 import hjow.methodconverter.ui.FontSetting;
+import hjow.methodconverter.ui.HelpManager;
 import hjow.methodconverter.ui.MultipleConvertPanel;
 import hjow.methodconverter.ui.StatusBar;
 import hjow.methodconverter.ui.TextAreaComponent;
@@ -122,7 +122,7 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 	private JMenuItem menuToolDaemon;
 	protected float transparency_opacity = Controller.DEFAULT_OPACITY_RATIO;
 	private JMenuItem menuHelpHelp;
-	private AWTHelpManager helpManager;
+	private HelpManager helpManager;
 	
 	/**
 	 * <p>Constructor</p>
@@ -310,7 +310,7 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 		menuHelp = new JMenu("Help");
 		menuBar.add(menuHelp);
 		
-		helpManager = new AWTHelpManager(frame);
+		helpManager = new SwingHelpManager(frame);
 		
 		menuHelpHelp = new JMenuItem(Controller.getString("Help"));
 		menuHelpHelp.addActionListener(this);

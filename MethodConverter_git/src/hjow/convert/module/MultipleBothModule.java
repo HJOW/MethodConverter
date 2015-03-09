@@ -23,6 +23,7 @@ public class MultipleBothModule implements BothModule
 	private static final long serialVersionUID = -6919052581586139757L;
 	private BothModule[] modules;
 	private String[] parameters;
+	private String url;
 	/**
 	 * <p>Create empty multiple module object.</p>
 	 * 
@@ -342,5 +343,16 @@ public class MultipleBothModule implements BothModule
 		}
 		
 		return results + "\n\n" + getParameterHelp();
+	}
+
+	@Override
+	public String getUrl()
+	{
+		return url;
+	}
+
+	public void setUrl(String url)
+	{
+		this.url = url;
 	}
 }

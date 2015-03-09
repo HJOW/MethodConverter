@@ -334,4 +334,9 @@ public class HashModule implements BothModule
 		
 		return results + "\n\n" + getParameterHelp();
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

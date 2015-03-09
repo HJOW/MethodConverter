@@ -54,6 +54,7 @@ public class SEED_KISA
 	 * @param use_base64 : If this is true, result bytes are shown as 5-digit long code.
 	 * @return encrypted text
 	 */
+	@SuppressWarnings("restriction")
 	public static String encrypt(String before, String keys, boolean use_base64)
 	{
 		try
@@ -127,6 +128,7 @@ public class SEED_KISA
 	 * @param use_base64 : If this is true, encrypted text is become byte array with BASE64 method.
 	 * @return decrypted text
 	 */
+	@SuppressWarnings("restriction")
 	public static String decrypt(String before, String keys, boolean use_base64)
 	{
 		try

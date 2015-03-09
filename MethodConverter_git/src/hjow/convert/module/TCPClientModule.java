@@ -254,4 +254,9 @@ public class TCPClientModule implements ConvertModule
 		
 		return results + "\n\n" + getParameterHelp();
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

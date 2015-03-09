@@ -24,6 +24,7 @@ public class MultipleModule implements ConvertModule
 	
 	private ConvertModule[] modules;
 	private String[] parameters;
+	private String url;
 	
 	/**
 	 * <p>Create empty multiple module object.</p>
@@ -279,5 +280,16 @@ public class MultipleModule implements ConvertModule
 		}
 		
 		return results + "\n\n" + getParameterHelp();
+	}
+
+	@Override
+	public String getUrl()
+	{
+		return url;
+	}
+
+	public void setUrl(String url)
+	{
+		this.url = url;
 	}
 }

@@ -193,4 +193,9 @@ public class TCPHostModule implements ConvertModule
 		
 		return results + "\n\n" + getParameterHelp();
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

@@ -113,4 +113,13 @@ public interface Module extends Serializable
 	 * @return help message
 	 */
 	public String getHelps();
+	
+	/**
+	 * <p>Return homepage address.</p>
+	 * 
+	 * <p>홈페이지 주소를 반환합니다.</p>
+	 * 
+	 * @return homepage address, can be null
+	 */
+	public String getUrl();
 }

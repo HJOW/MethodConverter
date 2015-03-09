@@ -107,11 +107,15 @@ public class JustHelpModule implements Module
 		{
 			results = results + Controller.getString(Controller.TITLES) + "\n";
 			results = results + "" + "\n";
-			results = results + "" + "\n";
+			results = results + "This program has various modules to convert text." + "\n";
 			results = results + "" + "\n";
 			results = results + "You can select module to see their helps." + "\n";
 		}
 		return results + "\n\n" + Controller.getString(Controller.licenseMessage);
 	}
-
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

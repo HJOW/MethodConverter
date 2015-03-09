@@ -1408,4 +1408,16 @@ public class UserDefinedModule implements ConvertModule, SerializableObject
 		
 		return results;
 	}
+	@Override
+	public String getUrl()
+	{		
+		try
+		{
+			return String.valueOf(eval("getHomepage()"));
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
 }

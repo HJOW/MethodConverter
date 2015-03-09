@@ -18,7 +18,7 @@ import java.util.Vector;
  * @author HJOW
  *
  */
-public class CharEncoder implements ConvertModule, CanConvertByte
+public class CharEncoder implements BothModule
 {
 	private static final long serialVersionUID = -6496066945074895225L;
 
@@ -114,7 +114,6 @@ public class CharEncoder implements ConvertModule, CanConvertByte
 		return keys;
 	}
 
-	@Override
 	public String defaultParameterText()
 	{
 		return "--before \"EUC-KR\" --after \"UTF-8\"";
@@ -175,8 +174,30 @@ public class CharEncoder implements ConvertModule, CanConvertByte
 	public String getHelps()
 	{
 		String results = "";
-		results = results + getName() + "\n\n";
-		
-		return results + "\n\n" + getParameterHelp();
+		if(Statics.isKoreanLocale())
+		{
+			results = results + Controller.getString(Controller.TITLES) + "\n";
+			results = results + "" + "\n";
+			results = results + "이 모듈은 바이너리(이진) 데이터 변환에만 쓰입니다." + "\n";
+			results = results + "" + "\n";
+			results = results + "텍스트 파일은 여러 가지 글자 세트 중 하나로 작성될 수 있습니다." + "\n";
+			results = results + "대개 EUC-KR, 그리고 UTF-8 둘 중 하나를 사용합니다." + "\n";
+			results = results + "" + "\n";
+			results = results + "사용하려는 프로그램에 따라서는, 특정한 글자 세트로 작성된 텍스트 파일만을 이용할 수 있는 경우가 있습니다." + "\n";
+			results = results + "이 모듈은 텍스트 파일의 글자 세트를 변환할 수 있습니다." + "\n";
+		}
+		else
+		{
+			results = results + Controller.getString(Controller.TITLES) + "\n";
+			results = results + "" + "\n";
+			results = results + "This module can convert text file with another character set." + "\n";
+		}
+		return results + "\n\n" + Controller.getString(Controller.licenseMessage);
+	}
+
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
 	}
 }

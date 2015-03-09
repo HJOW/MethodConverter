@@ -583,6 +583,11 @@ public class InsertTokenModule implements ConvertModule
 		
 		return results + "\n\n" + getParameterHelp();
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }
 /**
  * <p>This class objects are need to find and replace braces.</p>

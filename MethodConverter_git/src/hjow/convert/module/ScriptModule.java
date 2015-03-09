@@ -314,4 +314,9 @@ public class ScriptModule extends UserDefinedModule
 		
 		return results;
 	}
+	@Override
+	public String getUrl()
+	{
+		return Controller.getDefaultURL();
+	}
 }

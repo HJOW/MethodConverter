@@ -44,6 +44,16 @@ public class FontSetting
 		boolean font_loaded = false;
 		String osName = System.getProperty("os.name");
 		String locale = System.getProperty("user.language");
+		int fontSize = default_fontSize;
+		
+		try
+		{
+			fontSize = Integer.parseInt(Controller.getOption("fontSize"));
+		}
+		catch(Exception e)
+		{
+			fontSize = default_fontSize;
+		}
 		
 		InputStream infs = null;
 		FileInputStream finfs = null;
@@ -58,11 +68,11 @@ public class FontSetting
 					finfs = new FileInputStream(fontFile);
 					infs = new BufferedInputStream(finfs);
 					usingFont = Font.createFont(Font.TRUETYPE_FONT, infs);
-					usingFont = usingFont.deriveFont(Font.PLAIN, default_fontSize);
-					usingFont2 = usingFont.deriveFont(Font.PLAIN, default_fontSize * 2);
-					usingFontB = usingFont.deriveFont(Font.BOLD, default_fontSize);
-					usingFont2B = usingFont.deriveFont(Font.BOLD, default_fontSize * 2);
-					usingFontP = usingFont.deriveFont(Font.BOLD, default_fontSize - 2);
+					usingFont = usingFont.deriveFont(Font.PLAIN, fontSize);
+					usingFont2 = usingFont.deriveFont(Font.PLAIN, fontSize * 2);
+					usingFontB = usingFont.deriveFont(Font.BOLD, fontSize);
+					usingFont2B = usingFont.deriveFont(Font.BOLD, fontSize * 2);
+					usingFontP = usingFont.deriveFont(Font.BOLD, fontSize - 2);
 					font_loaded = true;
 				}
 				else font_loaded = false;
@@ -99,7 +109,7 @@ public class FontSetting
 			String[] fontList = gr.getAvailableFontFamilyNames();
 			for(int i=0; i<fontList.length; i++)
 			{
-				if(fontList[i].equals("나눔고딕코딩") || fontList[i].equalsIgnoreCase("NanumGothicCoding") || fontList[i].equals("나눔고딕") || fontList[i].equalsIgnoreCase("NanumGothic"))
+				if(fontList[i].equals("나눔고딕코딩") || fontList[i].equalsIgnoreCase("NanumGothicCoding"))
 				{
 					truetype = fontList[i];
 					break;
@@ -124,7 +134,7 @@ public class FontSetting
 					usingFont2 = usingFont.deriveFont(Font.PLAIN, usingFont.getSize() * 2);
 					usingFontB = usingFont.deriveFont(Font.BOLD, usingFont.getSize());
 					usingFont2B = usingFont.deriveFont(Font.BOLD, usingFont.getSize() * 2);
-					usingFontP = usingFont.deriveFont(Font.BOLD, default_fontSize - 2);
+					usingFontP = usingFont.deriveFont(Font.BOLD, fontSize - 2);
 				}
 			} 
 			catch (Exception e)
@@ -183,11 +193,11 @@ public class FontSetting
 			}
 			try
 			{
-				usingFont = new Font(usingFontName, Font.PLAIN, default_fontSize);
-				usingFontB = new Font(usingFontName, Font.BOLD, default_fontSize);
-				usingFont2 = new Font(usingFontName, Font.PLAIN, default_fontSize * 2);
-				usingFont2B = new Font(usingFontName, Font.BOLD, default_fontSize * 2);
-				usingFontP = usingFont.deriveFont(Font.BOLD, default_fontSize - 2);
+				usingFont = new Font(usingFontName, Font.PLAIN, fontSize);
+				usingFontB = new Font(usingFontName, Font.BOLD, fontSize);
+				usingFont2 = new Font(usingFontName, Font.PLAIN, fontSize * 2);
+				usingFont2B = new Font(usingFontName, Font.BOLD, fontSize * 2);
+				usingFontP = usingFont.deriveFont(Font.BOLD, fontSize - 2);
 				font_loaded = true;
 			} 
 			catch (Exception e)
