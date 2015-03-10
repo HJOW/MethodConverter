@@ -216,7 +216,7 @@ public class SwingSettingManager extends SettingManager
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(dialog, Controller.getString("Error") + " : " + e.getMessage());
+			JOptionPane.showMessageDialog(dialog, Statics.fullErrorMessage(e));
 		}
 	}
 	@Override

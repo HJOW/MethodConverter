@@ -3,6 +3,7 @@ package hjow.convert.javamethods;
 import hjow.convert.module.ScriptModule;
 import hjow.daemon.Daemon;
 import hjow.methodconverter.Controller;
+import hjow.methodconverter.Statics;
 
 /**
  * <p>This object is used in script. In script, you can use this object named daemon.<br>
@@ -58,7 +59,7 @@ public class DaemonContainer
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 		}
 	}
 	public void stopDaemon()
@@ -69,7 +70,7 @@ public class DaemonContainer
 		}
 		catch(Exception e)
 		{
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 		}
 	}
 	public void access()

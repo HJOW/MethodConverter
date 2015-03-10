@@ -275,8 +275,7 @@ public class SQLModule implements ConvertModule
 					catch(Exception e)
 					{
 						e.printStackTrace();
-						Controller.print("Error", true);
-						Controller.println(" : " + e.getMessage());
+						Controller.println(Statics.fullErrorMessage(e));
 						fileObj = null;
 					}
 				}
@@ -535,8 +534,8 @@ public class SQLModule implements ConvertModule
 		catch (Exception e)
 		{
 			e.printStackTrace();			
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
-			if(statusField != null) statusField.setText(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
+			if(statusField != null) statusField.setText(Statics.fullErrorMessage(e));
 		}
 		return Statics.applyScript(this, parameters, queryStatement);
 	}
@@ -571,7 +570,7 @@ public class SQLModule implements ConvertModule
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			return null;
 		}
 		
@@ -603,7 +602,7 @@ public class SQLModule implements ConvertModule
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			return null;
 		}
 		
@@ -635,7 +634,7 @@ public class SQLModule implements ConvertModule
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			return null;
 		}
 		

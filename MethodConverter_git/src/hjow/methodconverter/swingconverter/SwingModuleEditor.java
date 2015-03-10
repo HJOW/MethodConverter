@@ -462,7 +462,7 @@ public class SwingModuleEditor extends ModuleEditor
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(dialog, Controller.getString("Error") + " : " + e.getMessage());
+			JOptionPane.showMessageDialog(dialog, Statics.fullErrorMessage(e));
 		}		
 	}
 	@Override
@@ -482,7 +482,7 @@ public class SwingModuleEditor extends ModuleEditor
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(dialog, Controller.getString("Error") + " : " + e.getMessage());
+			JOptionPane.showMessageDialog(dialog, Statics.fullErrorMessage(e));
 		}				
 	}
 	@Override

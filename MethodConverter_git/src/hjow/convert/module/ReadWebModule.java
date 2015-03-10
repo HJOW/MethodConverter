@@ -52,8 +52,8 @@ public class ReadWebModule implements ConvertModule
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
-			return Controller.getString("Error") + " : " + e.getMessage();
+			Controller.alert(Statics.fullErrorMessage(e));
+			return Statics.fullErrorMessage(e);
 		}
 	}
 

@@ -246,7 +246,7 @@ public class EncryptModule implements SecurityModule
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
 			return null;
 		}
 	}
@@ -494,8 +494,7 @@ public class EncryptModule implements SecurityModule
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				Controller.print("Error", true);
-				Controller.println(" : " + e.getMessage());
+				Controller.println(Statics.fullErrorMessage(e));
 				return before;
 			}
 		}

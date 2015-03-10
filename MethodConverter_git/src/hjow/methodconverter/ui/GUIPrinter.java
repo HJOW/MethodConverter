@@ -2,6 +2,7 @@ package hjow.methodconverter.ui;
 import hjow.convert.javamethods.ConsoleContainer;
 import hjow.methodconverter.Controller;
 import hjow.methodconverter.Printer;
+import hjow.methodconverter.Statics;
 
 /**
  * <p>GUI Printer class.</p>
@@ -60,7 +61,7 @@ public abstract class GUIPrinter extends Printer implements IsComponent
 		{
 			e.printStackTrace();
 			newLine();
-			print(Controller.getString("Error") + " : " + e.getMessage());
+			print(Statics.fullErrorMessage(e));
 		}
 		setFieldText("");
 	}

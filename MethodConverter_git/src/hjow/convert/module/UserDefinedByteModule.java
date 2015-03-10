@@ -1,6 +1,7 @@
 package hjow.convert.module;
 
 import hjow.methodconverter.Controller;
+import hjow.methodconverter.Statics;
 import hjow.methodconverter.ui.StatusBar;
 import hjow.methodconverter.ui.StatusViewer;
 
@@ -55,7 +56,7 @@ public class UserDefinedByteModule extends UserDefinedModule implements BothModu
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
 			return null;
 		}
 	}
@@ -86,7 +87,7 @@ public class UserDefinedByteModule extends UserDefinedModule implements BothModu
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
 			return null;
 		}
 	}

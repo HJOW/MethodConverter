@@ -3,6 +3,7 @@ package hjow.convert.module;
 import hjow.daemon.Daemon;
 import hjow.methodconverter.Controller;
 import hjow.methodconverter.ParameterGetter;
+import hjow.methodconverter.Statics;
 import hjow.methodconverter.ThreadRunner;
 
 import java.io.BufferedReader;
@@ -316,7 +317,7 @@ public class DaemonClient implements ThreadRunner
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			try
 			{
 				close();

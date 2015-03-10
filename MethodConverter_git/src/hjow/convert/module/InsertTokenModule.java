@@ -381,7 +381,7 @@ public class InsertTokenModule implements ConvertModule
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			return before;
 		}		
 		
@@ -440,7 +440,7 @@ public class InsertTokenModule implements ConvertModule
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			return null;
 		}
 	}

@@ -105,7 +105,7 @@ public class Controller
 	 * 
 	 * <p>빌드 번호입니다.</p>
 	 */
-	public static long buildNumber = 100000000001L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L);
+	public static long buildNumber = 100000000002L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L);
 	
 	/**
 	 * <p>If this is true, build number is appear on the about dialog.</p>
@@ -1446,7 +1446,7 @@ public class Controller
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.statusField.setText(getString("Error") + " : " + e.getMessage());
+			Controller.statusField.setText(Statics.fullErrorMessage(e));
 			throw e;
 		}
 		finally
@@ -1838,8 +1838,8 @@ public class Controller
 		catch (Exception e)
 		{
 			//e.printStackTrace();
-			println(getString("Error") + " : " + e.getMessage());
-			statusField.setText(getString("Error") + " : " + e.getMessage());
+			println(Statics.fullErrorMessage(e));
+			statusField.setText(Statics.fullErrorMessage(e));
 		}
 	}
 		
@@ -1924,7 +1924,7 @@ public class Controller
 		}
 		catch (Exception e)
 		{
-			
+			Controller.println(Statics.fullErrorMessage(e));
 		}
 						
 		if(Statics.useOnlineContent())
@@ -3007,7 +3007,7 @@ public class Controller
 					catch(Exception e)
 					{
 						e.printStackTrace();
-						Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+						Controller.println(Statics.fullErrorMessage(e));
 					}
 				}
 			}
@@ -3964,8 +3964,7 @@ public class Controller
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.print("Error", true);
-			Controller.println(" : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 		}
 		return new Hashtable<String, String>();
 	}
@@ -4014,8 +4013,7 @@ public class Controller
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.print("Error", true);
-			Controller.println(" : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 		}
 		return new Vector<String>();
 	}
@@ -4065,7 +4063,7 @@ public class Controller
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+				Controller.alert(Statics.fullErrorMessage(e));
 			}
 		}
 	}
@@ -4090,7 +4088,7 @@ public class Controller
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+				Controller.println(Statics.fullErrorMessage(e));
 			}
 		}
 		else
@@ -4165,7 +4163,7 @@ public class Controller
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				Controller.println(Controller.getString("Error") + " : " + e.getMessage());
+				Controller.println(Statics.fullErrorMessage(e));
 			}
 			finally
 			{

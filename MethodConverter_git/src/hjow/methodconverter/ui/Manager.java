@@ -670,14 +670,14 @@ public abstract class Manager implements ActionListener, WindowListener, ItemLis
 		catch (FileNotFoundException e1)
 		{
 			Controller.setStatusText(e1.getMessage());
-			alert(Controller.getString("Error") + " : " + e1.getMessage());
+			alert(Statics.fullErrorMessage(e1));
 			Controller.println(e1.getMessage());
 			setTextOnArea("");
 		}
 		catch (Exception e1)
 		{
 			e1.printStackTrace();
-			alert(Controller.getString("Error") + " : " + e1.getMessage());
+			alert(Statics.fullErrorMessage(e1));
 			Controller.setStatusText(Controller.getString("There is problem when loading : ") + e1.getMessage());
 			Controller.println(Controller.getString("There is problem when loading : ") + e1.getMessage());
 		}
@@ -702,7 +702,7 @@ public abstract class Manager implements ActionListener, WindowListener, ItemLis
 		catch (Exception e1)
 		{
 			e1.printStackTrace();
-			alert(Controller.getString("Error") + " : " + e1.getMessage());
+			alert(Statics.fullErrorMessage(e1));
 			Controller.println(Controller.getString("There is problem when converting : ") + e1.getMessage());
 			Controller.setStatusText(Controller.getString("There is problem when converting : ") + e1.getMessage());
 		}
@@ -1234,7 +1234,7 @@ public abstract class Manager implements ActionListener, WindowListener, ItemLis
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+				Controller.alert(Statics.fullErrorMessage(e));
 			}
 		}
 	}

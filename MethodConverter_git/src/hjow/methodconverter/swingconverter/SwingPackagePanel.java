@@ -21,6 +21,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import hjow.methodconverter.Controller;
+import hjow.methodconverter.Statics;
 import hjow.methodconverter.ui.Manager;
 import hjow.methodconverter.ui.PackageViewer;
 
@@ -164,7 +165,7 @@ public class SwingPackagePanel extends PackageViewer implements ListSelectionLis
 					e1.printStackTrace();
 					try
 					{
-						if(upper instanceof SwingManager) JOptionPane.showMessageDialog(((SwingManager) upper).getFrame(), Controller.getString("Error") + " : " + e1.getMessage());						
+						if(upper instanceof SwingManager) JOptionPane.showMessageDialog(((SwingManager) upper).getFrame(), Statics.fullErrorMessage(e1));						
 					}
 					catch(Exception e2)
 					{

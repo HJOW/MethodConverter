@@ -72,8 +72,8 @@ public class HashModule implements BothModule
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
-			return Controller.getString("Error") + " : " + e.getMessage();
+			Controller.alert(Statics.fullErrorMessage(e));
+			return Statics.fullErrorMessage(e);
 		}
 	} 
 	
@@ -132,7 +132,7 @@ public class HashModule implements BothModule
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
 			return null;
 		}
 	}

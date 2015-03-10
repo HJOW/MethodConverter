@@ -231,7 +231,7 @@ public class DecryptModule implements SecurityModule
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
 			return null;
 		}
 	}
@@ -352,7 +352,7 @@ public class DecryptModule implements SecurityModule
 		catch (Exception e1)
 		{
 			e1.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e1.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e1));
 			return null;
 		}
 		
@@ -479,7 +479,7 @@ public class DecryptModule implements SecurityModule
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
+				Controller.alert(Statics.fullErrorMessage(e));
 				return before;
 			}
 		}

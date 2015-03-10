@@ -672,9 +672,7 @@ public class ByteConverter
 						}
 						catch(Exception e)
 						{
-							Controller.print("Error", true);
-							Controller.print(" : ", true);
-							Controller.println(e.getMessage(), true);
+							Statics.fullErrorMessage(e);
 						}
 						break;
 					case 5: // Save file select
@@ -723,9 +721,7 @@ public class ByteConverter
 				}
 				catch(Exception e)
 				{
-					Controller.print("Error", true);
-					Controller.print(" : ", true);
-					Controller.println(e.getMessage(), true);
+					Statics.fullErrorMessage(e);
 				}
 			}
 		}

@@ -196,8 +196,7 @@ public class Statics
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Controller.print("Error", true);
-			Controller.println(" : " + e.getMessage());
+			Controller.println(Statics.fullErrorMessage(e));
 			return target;
 		}
 		finally
@@ -873,5 +872,218 @@ public class Statics
 		{
 			return false;
 		}
+	}
+	
+	/**
+	 * <p>Return full message of exception.</p>
+	 * 
+	 * <p>예외 객체를 전체 내역 메시지로 변환합니다.</p>
+	 * 
+	 * @param e : Exception object
+	 * @return full message of exception
+	 */
+	public static String fullErrorMessage(Throwable e)
+	{
+		String beforeMsg, forms, afterMsg;		
+		
+		beforeMsg = Controller.getString("Error") + " " + Controller.getString("in") + " " + Controller.getString("thread") + " " + "\"{THREAD}\"";
+		beforeMsg = beforeMsg + " {CLASS_NAME} : {MESSAGE}\n";
+		afterMsg = "";
+		
+		if(Controller.getOption("error_beforeForm") != null)
+		{
+			beforeMsg = Controller.getOption("error_beforeForm");
+		}
+		if(Controller.getOption("error_afterForm") != null)
+		{
+			afterMsg = Controller.getOption("error_afterForm");
+		}
+		if(Controller.getOption("error_form") != null)
+		{
+			forms = Controller.getOption("error_form");
+		}
+		
+		forms = Controller.getString("at") + " {CLASS_NAME}.{METHOD_NAME}({FILE_NAME}:{LINE_NUMBER})";
+		
+		return fullErrorMessage(e, beforeMsg, forms, afterMsg);
+	}
+	
+	/**
+	 * <p>Return full message of exception.</p>
+	 * 
+	 * <p>예외 객체를 전체 내역 메시지로 변환합니다.</p>
+	 * 
+	 * @param e : Exception object
+	 * @param forms : form of message
+	 * @return full message of exception
+	 */
+	public static String fullErrorMessage(Throwable e, String forms)
+	{
+		String beforeMsg, afterMsg;
+		
+		beforeMsg = Controller.getString("Error") + " " + Controller.getString("in") + " " + Controller.getString("thread") + " " + "\"{THREAD}\"";
+		beforeMsg = beforeMsg + " {CLASS_NAME} : {MESSAGE}\n";
+		afterMsg = "";
+		
+		if(Controller.getOption("error_beforeForm") != null)
+		{
+			beforeMsg = Controller.getOption("error_beforeForm");
+		}
+		if(Controller.getOption("error_afterForm") != null)
+		{
+			afterMsg = Controller.getOption("error_afterForm");
+		}
+		
+		return fullErrorMessage(e, beforeMsg, forms, afterMsg);
+	}
+	
+	/**
+	 * <p>Return full message of exception.</p>
+	 * 
+	 * <p>예외 객체를 전체 내역 메시지로 변환합니다.</p>
+	 * 
+	 * @param e : Exception object
+	 * @param beforeMsg : message which will be placed front of the whole message
+	 * @param forms : form of message
+	 * @return full message of exception
+	 */
+	public static String fullErrorMessage(Throwable e, String beforeMsg, String forms)
+	{
+		String afterMsg;
+		afterMsg = "";
+		
+		if(Controller.getOption("error_afterForm") != null)
+		{
+			afterMsg = Controller.getOption("error_afterForm");
+		}
+		
+		return fullErrorMessage(e, beforeMsg, forms, afterMsg);
+	}
+	
+	/**
+	 * <p>Return full message of exception.</p>
+	 * 
+	 * <p>예외 객체를 전체 내역 메시지로 변환합니다.</p>
+	 * 
+	 * @param e : Exception object
+	 * @param beforeMsg : message which will be placed front of the whole message
+	 * @param forms : form of message
+	 * @param afterMsg : message which will be placed last of the whole message
+	 * @return full message of exception
+	 */
+	public static String fullErrorMessage(Throwable e, String beforeMsg, String forms, String afterMsg)
+	{
+		StringBuffer results = new StringBuffer("");
+		
+		if(forms == null) return fullErrorMessage(e);
+		
+		String bfMsg, afMsg;
+		if(beforeMsg == null) bfMsg = "";
+		else
+		{
+			bfMsg = beforeMsg;
+			bfMsg = bfMsg.replace("{THREAD}", Thread.currentThread().getName());
+			bfMsg = bfMsg.replace("{CLASS_NAME}", e.getClass().getName());
+			bfMsg = bfMsg.replace("{MESSAGE}", Controller.getString(e.getMessage()));
+			bfMsg = bfMsg.replace("{MESSAGE_PURE}", e.getMessage());
+			bfMsg = bfMsg.replace("{LOCAL_MESSAGE}", Controller.getString(e.getLocalizedMessage()));
+			bfMsg = bfMsg.replace("{LOCAL_MESSAGE_PURE}", e.getLocalizedMessage());
+		}
+		
+		if(afterMsg == null) afMsg = "";
+		else
+		{
+			afMsg = afterMsg;
+			afMsg = afMsg.replace("{THREAD}", Thread.currentThread().getName());
+			afMsg = afMsg.replace("{CLASS_NAME}", e.getClass().getName());
+			afMsg = afMsg.replace("{MESSAGE}", Controller.getString(e.getMessage()));
+			afMsg = afMsg.replace("{MESSAGE_PURE}", e.getMessage());
+			afMsg = afMsg.replace("{LOCAL_MESSAGE}", Controller.getString(e.getLocalizedMessage()));
+			afMsg = afMsg.replace("{LOCAL_MESSAGE_PURE}", e.getLocalizedMessage());
+		}
+		
+		results = results.append(bfMsg);
+		
+		StackTraceElement[] elements = e.getStackTrace();
+		
+		for(int i=0; i<elements.length; i++)
+		{
+			results = results.append(" ");
+			results = results.append(toStringStackTraces(elements[i], forms) + "\n");
+		}
+	
+		return String.valueOf(results) + afMsg;
+	}
+	
+	/**
+	 * <p>Return message of stack trace data.</p>
+	 * 
+	 * <p>스택 추적 데이터를 메시지로 만들어 반환합니다.</p>
+	 * 
+	 * @param e : Stack trace data
+	 * @param forms : form of message
+	 * @return full message of tracement
+	 */
+	public static String toStringStackTraces(StackTraceElement e, String forms)
+	{
+		String results = forms;
+		int indexes = -1;
+		boolean needAgain = true;
+		
+		while(needAgain)
+		{
+			needAgain = false;			
+			
+			indexes = results.indexOf("{CLASS_NAME}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{CLASS_NAME}", e.getClassName());
+				needAgain = true;
+			}
+			
+			indexes = results.indexOf("{FILE_NAME}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{FILE_NAME}", e.getFileName());
+				needAgain = true;
+			}
+			
+			indexes = results.indexOf("{METHOD_NAME}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{METHOD_NAME}", e.getMethodName());
+				needAgain = true;
+			}
+			
+			indexes = results.indexOf("{LINE_NUMBER}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{LINE_NUMBER}", String.valueOf(e.getLineNumber()));
+				needAgain = true;
+			}
+			
+			indexes = results.indexOf("{IS_NATIVE}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{IS_NATIVE}", String.valueOf(e.isNativeMethod()));
+				needAgain = true;
+			}
+			
+			indexes = results.indexOf("{THREAD}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{THREAD}", String.valueOf(Thread.currentThread().getName()));
+				needAgain = true;
+			}
+			
+			indexes = results.indexOf("{STACK_TRACE_CLASS}");
+			if(indexes >= 0)
+			{
+				results = results.replace("{STACK_TRACE_CLASS}", String.valueOf(e.getClassName()));
+				needAgain = true;
+			}
+		}
+		
+		return results;
 	}
 }

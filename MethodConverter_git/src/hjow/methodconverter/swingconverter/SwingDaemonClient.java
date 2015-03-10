@@ -2,6 +2,7 @@ package hjow.methodconverter.swingconverter;
 
 import hjow.daemon.Daemon;
 import hjow.methodconverter.Controller;
+import hjow.methodconverter.Statics;
 import hjow.methodconverter.ui.FontSetting;
 import hjow.methodconverter.ui.GUIDaemonClient;
 
@@ -287,7 +288,7 @@ public class SwingDaemonClient extends GUIDaemonClient
 			catch(Exception e1)
 			{
 				e1.printStackTrace();
-				area.append(Controller.getString("Error") + " : " + e1.getMessage());
+				area.append(Statics.fullErrorMessage(e1));
 			}
 			field.setText("");
 		}
@@ -302,7 +303,7 @@ public class SwingDaemonClient extends GUIDaemonClient
 			catch(Exception e1)
 			{
 				e1.printStackTrace();
-				area.append(Controller.getString("Error") + " : " + e1.getMessage());
+				area.append(Statics.fullErrorMessage(e1));
 			}
 		}
 		else if(ob == logoutButton)
@@ -320,7 +321,7 @@ public class SwingDaemonClient extends GUIDaemonClient
 			}
 			catch (Exception e1)
 			{
-				JOptionPane.showMessageDialog(loginManager, Controller.getString("Error") + " : " + e1.getMessage());
+				JOptionPane.showMessageDialog(loginManager, Statics.fullErrorMessage(e1));
 				e1.printStackTrace();
 			}
 		}		

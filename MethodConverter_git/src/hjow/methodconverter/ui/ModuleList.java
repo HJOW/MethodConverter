@@ -125,7 +125,7 @@ public abstract class ModuleList implements ActionListener, Refreshable, IsCompo
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				upper.alert(Controller.getString("Error") + " : " + e.getMessage());
+				upper.alert(Statics.fullErrorMessage(e));
 			}
 			finally
 			{
@@ -205,7 +205,7 @@ public abstract class ModuleList implements ActionListener, Refreshable, IsCompo
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			upper.alert(Controller.getString("Error") + " : " + e.getMessage());
+			upper.alert(Statics.fullErrorMessage(e));
 		}
 			
 		upper.enableAll(true);

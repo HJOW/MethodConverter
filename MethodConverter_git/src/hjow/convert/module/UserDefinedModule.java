@@ -712,8 +712,8 @@ public class UserDefinedModule implements ConvertModule, SerializableObject
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Controller.alert(Controller.getString("Error") + " : " + e.getMessage());
-			if(statusField != null) statusField.setText(stringTable.get("Error") + " : " + e.getMessage());
+			Controller.alert(Statics.fullErrorMessage(e));
+			if(statusField != null) statusField.setText(Statics.fullErrorMessage(e));
 			return before;
 		}
 	}

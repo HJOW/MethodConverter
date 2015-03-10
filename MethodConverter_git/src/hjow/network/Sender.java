@@ -163,8 +163,7 @@ public abstract class Sender implements ConvertModule
 		catch (Exception e1)
 		{
 			e1.printStackTrace();
-			Controller.print("Error", true);
-			Controller.println(" : " + e1.getMessage());
+			Controller.println(Statics.fullErrorMessage(e1));
 			return before;
 		}		
 	}
