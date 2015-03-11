@@ -38,7 +38,19 @@ public class FontSetting
 	 * <p>기본 글꼴 크기입니다.</p>
 	 */
 	public static int default_fontSize = 12;
+	
+	/**
+	 * <p>Default font name.</p>
+	 * 
+	 * <p>기본 글꼴 이름입니다.</p>
+	 */
 	public static String usingFontName = null;
+	
+	/**
+	 * <p>Load fonts.</p>
+	 * 
+	 * <p>글꼴을 불러옵니다.</p>
+	 */
 	public static void prepareFont()
 	{
 		boolean font_loaded = false;
@@ -222,16 +234,42 @@ public class FontSetting
 			}
 		}
 	}
+	
+	/**
+	 * <p>Set font on selected component and its child components.</p>
+	 * 
+	 * <p>컴포넌트의 글꼴을 변경합니다. 해당 컴포넌트에 포함된 하위 컴포넌트 전체에 적용됩니다.</p>
+	 * 
+	 * @param comp : Component
+	 * @param font : Font
+	 */
 	public static void setFontRecursively(Component comp, Font font)
 	{
 		setFontRecursively(comp, font, 1000);
 	}
+	
+	/**
+	 * <p>Set font on selected component and its child components.</p>
+	 * 
+	 * <p>컴포넌트의 글꼴을 변경합니다. 해당 컴포넌트에 포함된 하위 컴포넌트 전체에 적용됩니다.</p>
+	 * 
+	 * @param comp : Component
+	 * @param font : Font
+	 * @param prevent_infiniteLoop : integer data that is limit of recursive loop.
+	 */
 	public static void setFontRecursively(Component comp, Font font, int prevent_infiniteLoop)
 	{
 		try
 		{
 			if(font == null) return;
-			comp.setFont(font);
+			try
+			{
+				comp.setFont(font);
+			}
+			catch(Exception e)
+			{
+				
+			}
 			int max_limits = prevent_infiniteLoop;
 			if(comp instanceof Container)
 			{

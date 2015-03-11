@@ -105,14 +105,15 @@ public class Controller
 	 * 
 	 * <p>빌드 번호입니다.</p>
 	 */
-	public static long buildNumber = 100000000002L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L);
+	public static long buildNumber = 100000000000L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L)
+								   + 3;
 	
 	/**
 	 * <p>If this is true, build number is appear on the about dialog.</p>
 	 * 
 	 * <p>이 값이 true 이면 About 대화 상자에 빌드 번호가 표시됩니다.</p>
 	 */
-	public static boolean showBuildNumber = false;
+	public static boolean showBuildNumber = true;
 	
 	/**
 	 * <p>Part of default daemon-login password.</p>

@@ -14,7 +14,7 @@ import javax.swing.text.Document;
  *
  */
 public interface TextAreaComponent
-{
+{	
 	/**
 	 * <p>Set text value.</p>
 	 * 
@@ -77,7 +77,6 @@ public interface TextAreaComponent
 	 * @param color : foreground
 	 */
 	public void setForeground(Color color);
-	
 	/**
 	 * <p>Return Document object which has text value.</p>
 	 * 

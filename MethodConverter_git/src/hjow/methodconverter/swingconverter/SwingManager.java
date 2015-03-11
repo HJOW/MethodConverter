@@ -123,6 +123,8 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 	protected float transparency_opacity = Controller.DEFAULT_OPACITY_RATIO;
 	private JMenuItem menuHelpHelp;
 	private HelpManager helpManager;
+	private TransparentPanel browserPane;
+	private SimpleBrowserPane browserArea;
 	
 	/**
 	 * <p>Constructor</p>
@@ -548,6 +550,23 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 		{
 			e.printStackTrace();
 		}
+		
+		
+		try
+		{
+			browserPane = new TransparentPanel();
+			browserArea = new SimpleBrowserPane();
+			browserPane.setLayout(new BorderLayout());
+			browserPane.add(browserArea.getComponent(), BorderLayout.CENTER);
+			browserArea.setStatusViewer(status);
+			//mainTab.add(Controller.getString("e"), browserPane);
+			//browserArea.setPage(Controller.getDefaultURL());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		
 		Controller.resetSyntaxList();
 		syntaxChoiceRefresh();
