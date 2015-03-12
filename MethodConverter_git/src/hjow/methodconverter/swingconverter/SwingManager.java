@@ -393,8 +393,8 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 		mainPanel.add(statusBar, BorderLayout.SOUTH);
 		//bottomPanel.add(statusBar, BorderLayout.SOUTH);
 		
-		
-		Controller.setStatusBar(new SwingStatusBar());
+		StatusBar newStatusBar = new SwingStatusBar();
+		Controller.setStatusBar(newStatusBar);
 		statusBar.add(Controller.getStatusBar(), BorderLayout.CENTER);	
 		
 		exitButton = new JButton("Exit");
@@ -554,13 +554,27 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 		
 		try
 		{
-			browserPane = new TransparentPanel();
-			browserArea = new SimpleBrowserPane();
-			browserPane.setLayout(new BorderLayout());
-			browserPane.add(browserArea.getComponent(), BorderLayout.CENTER);
-			browserArea.setStatusViewer(status);
-			//mainTab.add(Controller.getString("e"), browserPane);
-			//browserArea.setPage(Controller.getDefaultURL());
+			Controller.setOption("use_browser", true);
+			if(Controller.getOption("use_browser") != null)
+			{
+				if(Statics.parseBoolean(Controller.getOption("use_browser")))
+				{
+					if(browserPane == null)
+					{
+						browserPane = new TransparentPanel();
+					}
+					if(browserArea == null)
+					{
+						browserArea = new SimpleBrowserPane();
+					}
+					browserPane.setLayout(new BorderLayout());
+					browserPane.add(browserArea.getComponent(), BorderLayout.CENTER);
+					browserArea.setStatusViewer(status);
+					browserArea.setStatusBar(newStatusBar);
+					
+					mainTab.add(Controller.getString("Browser"), browserPane);
+				}
+			}
 		}
 		catch(Exception e)
 		{

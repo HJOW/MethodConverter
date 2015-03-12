@@ -1,11 +1,14 @@
 package hjow.methodconverter.swingconverter;
 
+import hjow.methodconverter.Controller;
 import hjow.methodconverter.ui.BrowserPane;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
 /**
@@ -22,6 +25,11 @@ public class SimpleBrowserPane extends BrowserPane
 	protected JScrollPane scrollPane;
 	private TransparentPanel panels;
 	private TransparentPanel controlPane;
+	private TransparentPanel controlRightPane;
+	private TransparentPanel controlLeftPane;
+	private JButton goButton;
+	private JButton backButton;
+	private JButton forwardButton;
 	
 	/**
 	 * <p>Create new component object.</p>
@@ -34,9 +42,19 @@ public class SimpleBrowserPane extends BrowserPane
 		panels.setLayout(new BorderLayout());
 		
 		controlPane = new TransparentPanel();
-		controlPane.setLayout(new FlowLayout());
+		controlPane.setLayout(new BorderLayout());
+		
+		controlRightPane = new TransparentPanel();
+		controlLeftPane = new TransparentPanel();
+		controlRightPane.setLayout(new FlowLayout());
+		controlLeftPane.setLayout(new FlowLayout());
 		
 		area = new TransparentEditorArea();
+		
+		goButton = new JButton(Controller.getString("Go"));
+		backButton = new JButton(Controller.getString("Back"));
+		forwardButton = new JButton(Controller.getString("Back"));
+		
 		area.setEditable(false);
 		area.addHyperlinkListener(this);
 		area.addMouseListener(this);
@@ -49,7 +67,18 @@ public class SimpleBrowserPane extends BrowserPane
 		panels.add(scrollPane, BorderLayout.CENTER);
 		panels.add(controlPane, BorderLayout.NORTH);
 		
-		controlPane.add(addressArea.getComponent());
+		controlPane.add(addressArea.getComponent(), BorderLayout.CENTER);
+		controlPane.add(controlLeftPane, BorderLayout.WEST);
+		controlPane.add(controlRightPane, BorderLayout.EAST);
+		
+		goButton.addActionListener(this);
+		backButton.addActionListener(this);
+		forwardButton.addActionListener(this);
+		
+		controlRightPane.add(goButton);
+		
+		controlLeftPane.add(backButton);
+		controlLeftPane.add(forwardButton);
 	}
 	
 	public void controlPanelVisible(boolean v)
@@ -62,6 +91,49 @@ public class SimpleBrowserPane extends BrowserPane
 	{
 		area.setPage(url);
 		addressArea.setText(url);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		Object ob = e.getSource();
+		if(ob == goButton)
+		{
+			try
+			{
+				goPage(addressArea.getText());
+			}
+			catch (Exception e1)
+			{
+				e1.printStackTrace();
+				showException(e1);
+			}
+		}
+		else if(ob == backButton)
+		{
+			try
+			{
+				goBack();
+			}
+			catch (Exception e1)
+			{
+				e1.printStackTrace();
+				showException(e1);
+			}
+		}
+		else if(ob == forwardButton)
+		{
+			try
+			{
+				goForward();
+			}
+			catch (Exception e1)
+			{
+				e1.printStackTrace();
+				showException(e1);
+			}
+		}
+		else super.actionPerformed(e);
 	}
 	
 	@Override

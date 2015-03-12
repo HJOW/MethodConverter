@@ -7,6 +7,8 @@ import hjow.methodconverter.ThreadRunner;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -37,7 +39,7 @@ import javax.swing.event.HyperlinkListener;
  * @author eduncom_cyk
  *
  */
-public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemListener, WindowListener, HyperlinkListener, MouseListener, MouseMotionListener
+public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemListener, WindowListener, HyperlinkListener, MouseListener, MouseMotionListener, ComponentListener
 {
 	protected String[] binaryForms = {"zip", "rar", "exe", "jar", "egg", "tar", "gz", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "pdf"};
 	protected List<String> visitList = new Vector<String>();
@@ -45,6 +47,7 @@ public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemL
 	protected String errorText = "";
 	protected TextFieldComponent addressArea = null;
 	protected StatusViewer statusViewer = null;
+	protected StatusBar statusBar = null;
 	
 	/**
 	 * <p>Return visited URL list.</p>
@@ -136,6 +139,8 @@ public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemL
 	{
 		nowVisitingIndex++;
 		if(nowVisitingIndex >= visitList.size()) nowVisitingIndex = visitList.size() - 1;
+		if(nowVisitingIndex < 0) nowVisitingIndex = 0;
+		if(visitList.size() == 0) return;
 		goPage(visitList.get(nowVisitingIndex));
 	}
 
@@ -144,6 +149,8 @@ public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemL
 	{
 		nowVisitingIndex--;
 		if(nowVisitingIndex < 0) nowVisitingIndex = 0;
+		if(nowVisitingIndex >= visitList.size()) nowVisitingIndex = visitList.size() - 1;
+		if(visitList.size() == 0) return;
 		goPage(visitList.get(nowVisitingIndex));
 	}
 
@@ -269,7 +276,7 @@ public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemL
 		
 		
 	}
-	private void showException(Exception e1)
+	protected void showException(Exception e1)
 	{
 		Controller.println(Statics.fullErrorMessage(e1));
 		if(errorText != null)
@@ -400,6 +407,37 @@ public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemL
 	public void setStatusViewer(StatusViewer statusViewer)
 	{
 		this.statusViewer = statusViewer;
+	}
+	@Override
+	public void componentHidden(ComponentEvent e)
+	{
+		
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e)
+	{
+		
+	}
+
+	@Override
+	public void componentResized(ComponentEvent e)
+	{
+		
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e)
+	{
+		
+	}
+	public StatusBar getStatusBar()
+	{
+		return statusBar;
+	}
+	public void setStatusBar(StatusBar statusBar)
+	{
+		this.statusBar = statusBar;
 	}
 }
 class DownloadThread implements ThreadRunner
@@ -634,5 +672,5 @@ class DownloadThread implements ThreadRunner
 	public void setViewerGap(int viewerGap)
 	{
 		this.viewerGap = viewerGap;
-	}	
+	}
 }

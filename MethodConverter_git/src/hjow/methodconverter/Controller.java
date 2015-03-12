@@ -3202,8 +3202,76 @@ public class Controller
 			
 		}
 	}
+	/**
+	 * <p>Set option</p>
+	 * 
+	 * <p>새로운 옵션 값을 넣거나 기존 옵션을 변경합니다.</p>
+	 * 
+	 * @param keys : key
+	 * @param values : value of option
+	 */
+	public static void setOption(String keys, boolean values)
+	{
+		if(optionTable == null) return;
+		if(keys == null) return;
+
+		optionTable.put(keys, String.valueOf(values));
+	}
+	/**
+	 * <p>Set option</p>
+	 * 
+	 * <p>새로운 옵션 값을 넣거나 기존 옵션을 변경합니다.</p>
+	 * 
+	 * @param keys : key
+	 * @param values : value of option
+	 */
+	public static void setOption(String keys, int values)
+	{
+		if(optionTable == null) return;
+		if(keys == null) return;
+
+		optionTable.put(keys, String.valueOf(values));
+		
+		try
+		{
+			if(keys.equalsIgnoreCase("securityLevel"))
+			{
+				scriptSecurityLevel = values;
+			}
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 	
-	
+	/**
+	 * <p>Set option</p>
+	 * 
+	 * <p>새로운 옵션 값을 넣거나 기존 옵션을 변경합니다.</p>
+	 * 
+	 * @param keys : key
+	 * @param values : value of option
+	 */
+	public static void setOption(String keys, double values)
+	{
+		if(optionTable == null) return;
+		if(keys == null) return;
+
+		optionTable.put(keys, String.valueOf(values));
+		
+		try
+		{
+			if(keys.equalsIgnoreCase("securityLevel"))
+			{
+				scriptSecurityLevel = (int) Math.round(values);
+			}
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 	
 		
 	/**

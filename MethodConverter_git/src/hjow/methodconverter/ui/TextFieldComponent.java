@@ -85,4 +85,14 @@ public interface TextFieldComponent
 	 * @param e : ActionListener object
 	 */
 	public void addActionListener(ActionListener e);
+	
+	/**
+	 * <p>Resize this component.</p>
+	 * 
+	 * <p>이 컴포넌트의 크기를 변경합니다.</p>
+	 * 
+	 * @param w : Width
+	 * @param h : Height
+	 */
+	public void setSize(int w, int h);
 }
