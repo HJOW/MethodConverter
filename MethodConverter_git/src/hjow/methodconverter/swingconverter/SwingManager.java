@@ -554,7 +554,7 @@ public class SwingManager extends AdvancedManager implements ChangeListener, Can
 		
 		try
 		{
-			Controller.setOption("use_browser", true);
+			if(Statics.useUntestedFunction()) Controller.setOption("use_browser", true);
 			if(Controller.getOption("use_browser") != null)
 			{
 				if(Statics.parseBoolean(Controller.getOption("use_browser")))

@@ -109,8 +109,8 @@ public abstract class BrowserPane implements CanBeSurfWeb, ActionListener, ItemL
 	 * <p>페이지를 불러오고 보입니다.</p>
 	 * 
 	 * @param url : URL
-	 * @param insideAction : If this is true, do not add URL on the visitList.
-	 * @exception MalformedURLException, or IOException can be occured
+	 * @param insideAction : If this is true, do not add URL on the visitList
+	 * @exception MalformedURLException
 	 */
 	public void goPage(String url, boolean insideAction) throws Exception
 	{

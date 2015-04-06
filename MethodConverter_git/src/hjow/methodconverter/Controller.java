@@ -106,7 +106,7 @@ public class Controller
 	 * <p>빌드 번호입니다.</p>
 	 */
 	public static long buildNumber = 100000000000L + (versions[0] * 1000000000L) + (versions[1] * 100000000L) + (versions[2] * 10000000L) + (versions[3] * 1000000L)
-								   + 3;
+								   + 4;
 	
 	/**
 	 * <p>If this is true, build number is appear on the about dialog.</p>
@@ -717,9 +717,27 @@ public class Controller
 									authLine = authLine.substring(2, authLine.length());
 									authLine = authLine.trim();
 									
+									Map<String, String> authParam = ParameterGetter.toParameter(authLine);
+									
+									String authKey = "";
+									String authMail = "";
+									if(authParam.get("key") != null)
+									{
+										authKey = authParam.get("key").trim();
+									}
+									if(authParam.get("email") != null)
+									{
+										authMail = authParam.get("email").trim();
+									}
+									
 									long authValues = 0;
 									boolean loaded = false;
-									char[] chars = authLine.toCharArray();
+									char[] chars = authKey.toCharArray();
+									for(int j=0; j<chars.length; j++)
+									{
+										authValues = authValues + ((int) chars[j]);
+									}
+									chars = authMail.toCharArray();
 									for(int j=0; j<chars.length; j++)
 									{
 										authValues = authValues + ((int) chars[j]);

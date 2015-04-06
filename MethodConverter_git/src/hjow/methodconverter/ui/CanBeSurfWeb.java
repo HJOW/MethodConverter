@@ -28,7 +28,7 @@ public interface CanBeSurfWeb
 	 * <p>페이지를 불러오고 보입니다.</p>
 	 * 
 	 * @param url : URL
-	 * @exception MalformedURLException, or IOException can be occured
+	 * @exception Exception
 	 */
 	public void goPage(String url) throws Exception;
 	
@@ -37,7 +37,7 @@ public interface CanBeSurfWeb
 	 * 
 	 * <p>앞으로 이동합니다.</p>
 	 * 
-	 * @exception MalformedURLException, or IOException can be occured
+	 * @exception Exception
 	 */
 	public void goForward() throws Exception;
 	
@@ -46,7 +46,7 @@ public interface CanBeSurfWeb
 	 * 
 	 * <p>뒤로 이동합니다.</p>
 	 * 
-	 * @exception MalformedURLException, or IOException can be occured
+	 * @exception Exception
 	 */
 	public void goBack() throws Exception;
 }

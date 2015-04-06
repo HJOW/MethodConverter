@@ -42,6 +42,18 @@ public abstract class StringTable implements Map<String, String>, SerializableOb
 	{
 		return table.get("localename_formal");
 	}
+	
+	/**
+	 * <p>Return value if text is exist on the string table.</p>
+	 * 
+	 * @param k : text
+	 * @return text on the string table
+	 */
+	public String t(Object k)
+	{
+		if(get(k) == null) return String.valueOf(k);
+		else return get(k);
+	}
 	@Override
 	public void clear()
 	{
