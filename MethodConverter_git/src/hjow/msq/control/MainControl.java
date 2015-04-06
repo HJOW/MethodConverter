@@ -18,6 +18,16 @@ public class MainControl
 	{
 		control = new QueryControl();
 		
+		runGUI();
+	}
+	
+	public static void runConsole()
+	{
+		
+	}
+	
+	public static void runGUI()
+	{
 		ui = new MainFrame();
 		ui.open();
 	}

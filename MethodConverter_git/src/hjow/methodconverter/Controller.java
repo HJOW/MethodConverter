@@ -34,6 +34,7 @@ import hjow.methodconverter.ui.Manager;
 import hjow.methodconverter.ui.RGB;
 import hjow.methodconverter.ui.StatusBar;
 import hjow.methodconverter.ui.StatusViewer;
+import hjow.msq.control.MainControl;
 import hjow.network.Communicator;
 import hjow.network.DoNotConnectedException;
 import hjow.network.NetworkPackage;
@@ -290,7 +291,9 @@ public class Controller
 	, MODE_GUI_SCRIPT = 4
 	, MODE_GUI_BINARY = 5
 	, MODE_GUI_MESSENGER = 6
-	, MODE_GUI_DAEMON_CLIENT = 10;
+	, MODE_GUI_DAEMON_CLIENT = 10
+	, MODE_MASSIVE_QUERY = 11
+	, MODE_GUI_MASSIVE_QUERY = 12;
 	
 	/**
 	 * <p>These static values are meaning programming languages.</p>
@@ -478,6 +481,10 @@ public class Controller
 			{
 				if(Statics.parseBoolean(getArguments.get(k))) mode = MODE_DAEMON_CLIENT;
 			}
+			else if(k.equalsIgnoreCase("mq") || k.equalsIgnoreCase("massive_query"))
+			{
+				if(Statics.parseBoolean(getArguments.get(k))) mode = MODE_MASSIVE_QUERY;
+			}
 			else if(k.equalsIgnoreCase("load"))
 			{
 				loadFile = new File(getArguments.get(k));
@@ -587,6 +594,12 @@ public class Controller
 				mode = MODE_GUI_BINARY;				
 			}
 			break;
+		case MODE_MASSIVE_QUERY:
+			if(guiOrNot)
+			{
+				mode = MODE_GUI_MASSIVE_QUERY;				
+			}
+			break;
 		case MODE_GUI_BINARY:
 			if(! guiOrNot)
 			{
@@ -609,6 +622,12 @@ public class Controller
 			if(! guiOrNot)
 			{
 				mode = MODE_MESSENGER;				
+			}
+			break;
+		case MODE_GUI_MASSIVE_QUERY:
+			if(! guiOrNot)
+			{
+				mode = MODE_MASSIVE_QUERY;				
 			}
 			break;
 		}
@@ -680,6 +699,12 @@ public class Controller
 			break;
 		case MODE_GUI_DAEMON_CLIENT:
 			runDaemonClient(true);
+			break;
+		case MODE_MASSIVE_QUERY:
+			MainControl.runConsole();
+			break;
+		case MODE_GUI_MASSIVE_QUERY:
+			MainControl.runGUI();
 			break;
 		}		
 	}
