@@ -35,7 +35,6 @@ public class FileQuery extends Query
 	@Override
 	public void setQuery(String content) throws IOException
 	{
-		// TODO Auto-generated method stub
-		
+		IOControl.saveText(file, content, null);
 	}
 }

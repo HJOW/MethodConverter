@@ -541,7 +541,7 @@ public class Controller
 		{
 			try
 			{
-				if(Boolean.parseBoolean(getOption("log")))
+				if(Statics.parseBoolean(getOption("log")))
 				{
 					newLogger();
 				}

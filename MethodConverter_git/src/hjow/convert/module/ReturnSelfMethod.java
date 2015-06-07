@@ -206,7 +206,7 @@ public class ReturnSelfMethod implements ConvertModule
 			variableDeclare = syntax.get("variableDeclare");
 			strcpys = syntax.get("strcpys");
 			returnGetter = syntax.get("returnGetter");
-			callByReference = Boolean.parseBoolean(syntax.get("callByReference"));
+			callByReference = Statics.parseBoolean(syntax.get("callByReference"));
 			try
 			{
 				concat_type = Integer.parseInt(syntax.get("concat_type"));
@@ -227,9 +227,9 @@ public class ReturnSelfMethod implements ConvertModule
 					concat_type = Controller.CONCAT_METHOD;
 				}
 			}
-			create_class = Boolean.parseBoolean(syntax.get("create_class"));	
-			escape_need_normal = Boolean.parseBoolean(syntax.get("escape_need_normal"));
-			escape_need_double = Boolean.parseBoolean(syntax.get("escape_need_double"));
+			create_class = Statics.parseBoolean(syntax.get("create_class"));	
+			escape_need_normal = Statics.parseBoolean(syntax.get("escape_need_normal"));
+			escape_need_double = Statics.parseBoolean(syntax.get("escape_need_double"));
 		}	
 		
 		results = results.append(firstString);

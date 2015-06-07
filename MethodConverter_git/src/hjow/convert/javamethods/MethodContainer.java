@@ -4,6 +4,7 @@ import hjow.convert.module.DecryptModule;
 import hjow.convert.module.EncryptModule;
 import hjow.methodconverter.ByteConverter;
 import hjow.methodconverter.Controller;
+import hjow.methodconverter.Statics;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -383,7 +384,7 @@ public class MethodContainer implements Serializable
 	 */
 	public boolean parseBoolean(String original)
 	{
-		return Boolean.parseBoolean(original);
+		return Statics.parseBoolean(original);
 	}
 	/**
 	 * <p>Parse text which can be parsed to integer.</p>
